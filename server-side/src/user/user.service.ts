@@ -5,8 +5,7 @@ import { hash } from 'argon2'
 
 @Injectable()
 export class UserService {
-	constructor(private readonly prisma: PrismaService) {
-	}
+	constructor(private readonly prisma: PrismaService) {}
 
 	async getById(id: string) {
 		const user = await this.prisma.user.findUnique({
@@ -14,10 +13,10 @@ export class UserService {
 			include: {
 				stores: true,
 				favorites: true,
-				orders: true
-			}
-		})
-		return user
+				orders: true,
+			},
+		});
+		return user;
 	}
 
 	async getByEmail(email: string) {
@@ -26,20 +25,35 @@ export class UserService {
 			include: {
 				stores: true,
 				favorites: true,
-				orders: true
-			}
-		})
-		return user
+				orders: true,
+			},
+		});
+		return user;
 	}
 
+	async toggleFavorite(productId: string, userId: string) {
+		const user = await this.getById(userId) as typeof user;
+		const isExists = user.favorites.some(product => product.id === productId);
+		await this.prisma.user.update({
+			where: { id: userId },
+			data: {
+				favorites: {
+					[isExists ? 'disconnect' : 'connect']: {
+						id: productId,
+					}
+				}
+			}
+		})
+		return true;
+	}
 
 	async create(dto: AuthDto) {
 		return this.prisma.user.create({
 			data: {
 				name: dto.name,
 				email: dto.email,
-				password: await hash(dto.password)
-			}
-		})
+				password: await hash(dto.password),
+			},
+		});
 	}
 }
