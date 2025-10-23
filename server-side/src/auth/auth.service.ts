@@ -38,6 +38,14 @@ export class AuthService {
 		return { user, ...tokens }
 	}
 
+	async getNewTokens(refreshToken: string) {
+		const result = this.jwt.verify<UserDB>(refreshToken)
+		if (!result) throw new UnauthorizedException('Invalid token')
+
+		const user = await this.userService.getById(result.id)
+		const tokens = this.issueTokens(user!.id)
+		return { user, ...tokens }
+	}
 
 	issueTokens(userId: string) {
 		const data = { id: userId }
@@ -64,7 +72,7 @@ export class AuthService {
 				data: {
 					email: req.user.email,
 					name: req.user.name,
-					picture: req.user.picture
+					picture: req.user.picture,
 				},
 				include: {
 					stores: true,
@@ -76,7 +84,7 @@ export class AuthService {
 
 		const tokens = this.issueTokens(user.id)
 
-		return { user, ...tokens }
+		return { user, ...tokens}
 	}
 
 	addRefreshTokenToResponse(res: Response, refreshToken: string) {
@@ -85,6 +93,16 @@ export class AuthService {
 
 		res.cookie(this.REFRESH_TOKEN_NAME, refreshToken, {
 			expires: expiresIn,
+			httpOnly: true,
+			domain: this.configService.get('SERVER_DOMAIN'),
+			secure: true,
+			sameSite: 'none'
+		})
+	}
+
+	removeRefreshTokenFromResponse(res: Response) {
+		res.cookie(this.REFRESH_TOKEN_NAME, '', {
+			expires: new Date(0),
 			httpOnly: true,
 			domain: this.configService.get('SERVER_DOMAIN'),
 			secure: true,

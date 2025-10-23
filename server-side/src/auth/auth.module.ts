@@ -22,11 +22,13 @@ import { YandexStrategy } from './strategies/yandex.strategy'
     })
   ],
   controllers: [AuthController],
-  providers: [AuthService,
+  providers: [
+    AuthService,
     PrismaService,
     UserService,
     JwtStrategy,
     GoogleStrategy,
-    YandexStrategy],
+    YandexStrategy
+  ]
 })
 export class AuthModule {}
