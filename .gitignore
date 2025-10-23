@@ -10,4 +10,5 @@
 /server-side/node_modules
 /server-side/.env
 /server-side/generated/prisma
+/server-side/dist
 
