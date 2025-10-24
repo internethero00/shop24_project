@@ -8,7 +8,7 @@ export class ProductService {
     }
 
     async getAll(searchTerm?: string) {
-        if (searchTerm) return this.getSearchTermFilter(searchTerm)
+        if (searchTerm) return  this.getSearchTermFilter(searchTerm)
 
         const products = await this.prisma.product.findMany({
             orderBy: {
@@ -21,9 +21,9 @@ export class ProductService {
         return products
     }
 
-    private getSearchTermFilter(searchTerm: string) {
-        return {
-            OR: [
+    private async getSearchTermFilter(searchTerm: string) {
+        return this.prisma.product.findMany({
+            where: {OR: [
                 {
                     title: {
                         contains: searchTerm,
@@ -36,8 +36,8 @@ export class ProductService {
                         mode: 'insensitive'
                     }
                 }
-            ]
-        }
+            ]}
+        })
     }
 
     async getByStoreId(storeId: string) {
