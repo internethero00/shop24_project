@@ -1,7 +1,11 @@
 import { IsString } from 'class-validator'
-import { CreateStoreDto } from './create-store.dto'
 
-export class UpdateStoreDto extends CreateStoreDto{
+export class CategoryDto {
+    @IsString({
+        message: 'title have to be string',
+    })
+    title: string
+
     @IsString({
         message: 'description have to be string',
     })

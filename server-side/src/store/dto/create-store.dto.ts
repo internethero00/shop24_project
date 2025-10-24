@@ -2,7 +2,7 @@ import { IsString } from 'class-validator'
 
 export class CreateStoreDto {
     @IsString({
-        message: 'name is required',
+        message: 'name have to be string',
     })
     title: string
 }

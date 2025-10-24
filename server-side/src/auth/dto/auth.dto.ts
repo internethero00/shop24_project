@@ -5,11 +5,11 @@ export class AuthDto {
 	@IsString()
 	name: string;
 
-	@IsString({ message: 'Email is required' })
+	@IsString({ message: 'Email have to be string' })
 	@IsEmail()
 	email: string;
 
 	@MinLength(6, { message: 'Password is too short. less than 6 symbols' })
-	@IsString({ message: 'password is required' })
+	@IsString({ message: 'password have to be string' })
 	password: string;
 }
