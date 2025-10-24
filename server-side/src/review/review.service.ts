@@ -13,7 +13,7 @@ export class ReviewService {
             where: {
                 storeId
             },
-            select: {
+            include: {
                 user: true,
             }
         })
@@ -35,7 +35,7 @@ export class ReviewService {
         return review
     }
 
-    async create(dto: ReviewDto, userId: string, productId: string, storeId: string) {
+    async create(userId: string, productId: string, storeId: string, dto: ReviewDto) {
         return this.prisma.review.create({
             data: {
                 ...dto,
