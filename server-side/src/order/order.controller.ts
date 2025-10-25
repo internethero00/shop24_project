@@ -1,4 +1,4 @@
-import {Body, Controller, HttpCode, Param, Post, UsePipes, ValidationPipe} from '@nestjs/common';
+import {Body, Controller, HttpCode, Post, UsePipes, ValidationPipe} from '@nestjs/common';
 import { OrderService } from './order.service';
 import {Auth} from "../auth/decorators/auth.decorator";
 import {OrderDto} from "./dto/order.dto";
