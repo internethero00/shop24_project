@@ -148,7 +148,7 @@ model OrderItem {
   updatedAt DateTime @updatedAt @map("updated_at")
 
   quantity Int
-  prise    Int
+  price    Int
 
   order   Order?  @relation(fields: [orderId], references: [id])
   orderId String? @map("order_id")
