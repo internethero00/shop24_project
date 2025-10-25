@@ -3,6 +3,9 @@ import {PrismaService} from "../prisma.service";
 import {YooCheckout} from '@a2seven/yoo-checkout'
 import process from "node:process";
 import {OrderDto} from "./dto/order.dto";
+import {PaymentStatusDto} from "./dto/payment-status.dto";
+import { ICapturePayment } from "@a2seven/yoo-checkout"
+import {EnumOrderStatus} from "@prisma/client";
 
 const checkout = new YooCheckout({
     shopId: process.env.YOOKASSA_SHOP_ID || '',
@@ -64,6 +67,33 @@ export class OrderService {
             description: `Payment for order #${order.id}`,
         })
         return payment
+
+    }
+
+    async updateStatus(dto: PaymentStatusDto) {
+        if(dto.event === 'payment.waiting_for_capture') {
+            const capturePayment: ICapturePayment = {
+                amount: {
+                    value: dto.object.amount.value,
+                    currency: dto.object.amount.currency
+                }
+            }
+            return checkout.capturePayment(dto.object.id, capturePayment)
+        }
+        if(dto.event === 'payment.succeeded') {
+            const orderId = dto.object.description.split(' ')[1]
+
+            await this.prisma.order.update({
+                where: {
+                    id: orderId
+                },
+                data: {
+                    status: EnumOrderStatus.PAYED
+                }
+            })
+            return true
+        }
+        return true
 
     }
 }
