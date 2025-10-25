@@ -1,8 +1,9 @@
 import {IsOptional, IsEnum, IsArray, ValidateNested, IsNumber, IsString} from "class-validator";
 
 import {Type} from "class-transformer";
-import {$Enums} from "../../../generated/prisma";
-import EnumOrderStatus = $Enums.EnumOrderStatus;
+import {EnumOrderStatus} from "@prisma/client";
+
+
 
 export class OrderDto {
     @IsOptional()
