@@ -81,7 +81,7 @@ export class OrderService {
             return checkout.capturePayment(dto.object.id, capturePayment)
         }
         if(dto.event === 'payment.succeeded') {
-            const orderId = dto.object.description.split(' ')[1]
+            const orderId = dto.object.description.split('#')[1]
 
             await this.prisma.order.update({
                 where: {

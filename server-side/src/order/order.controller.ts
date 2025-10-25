@@ -3,6 +3,7 @@ import { OrderService } from './order.service';
 import {Auth} from "../auth/decorators/auth.decorator";
 import {OrderDto} from "./dto/order.dto";
 import {CurrentUser} from "../user/decorators/user.decorator";
+import {PaymentStatusDto} from "./dto/payment-status.dto";
 
 @Controller('orders')
 export class OrderController {
@@ -17,5 +18,14 @@ export class OrderController {
       @Body() dto: OrderDto
   ) {
     return this.orderService.createPayment(dto, userId)
+  }
+
+
+  @HttpCode(200)
+  @Post('status')
+  async updateStatus(
+      @Body() dto: PaymentStatusDto,
+  ) {
+    return this.orderService.updateStatus(dto)
   }
 }
