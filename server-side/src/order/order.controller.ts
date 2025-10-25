@@ -4,7 +4,7 @@ import {Auth} from "../auth/decorators/auth.decorator";
 import {OrderDto} from "./dto/order.dto";
 import {CurrentUser} from "../user/decorators/user.decorator";
 
-@Controller('order')
+@Controller('orders')
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
