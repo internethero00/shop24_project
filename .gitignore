@@ -12,3 +12,6 @@
 /server-side/generated/prisma
 /server-side/dist
 
+/client-side/node_modules
+/client-side/.next
+
