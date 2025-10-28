@@ -1,9 +1,12 @@
-import React from 'react'
+import type {Metadata} from 'next'
+import Home from '@/app/(root)/Home'
 
-function Page(props) {
-	return (
-		<div>hello</div>
-	)
+
+export const metadata: Metadata = {
+	title: 'All shops in one place',
 }
 
-export default Page
+export default function Page() {
+	return <Home/>
+
+}
