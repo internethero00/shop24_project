@@ -16,6 +16,6 @@ export interface IProduct {
 }
 
 export interface IProductInput extends Omit<IProduct, 'id' | 'reviews' | 'store' | 'category' | 'color' > {
-	categroyId: string
+	categoryId: string
 	colorId: string
 }
