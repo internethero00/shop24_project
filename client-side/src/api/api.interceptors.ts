@@ -38,6 +38,7 @@ axiosWithAuth.interceptors.response.use(
       }
 
     }
+    throw error;
   },
 );
 
