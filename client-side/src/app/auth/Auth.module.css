@@ -1,0 +1,23 @@
+@reference "../globals.css";
+.wrapper { @apply min-h-screen grid grid-cols-1 lg:grid-cols-2; }
+
+
+.left  { @apply h-full bg-blue-600 hidden lg:flex items-center justify-center; }
+.right { @apply h-full flex flex-col items-center justify-center; }
+
+.card   { @apply border-none p-6 flex flex-col items-center justify-center w-[380px]; }
+.card > div { @apply w-full; }
+.header > div { @apply text-center w-full; }
+
+
+.content { @apply p-0 w-full; }
+.content form         { @apply space-y-5; }
+.content form button  { @apply w-full; }
+
+.social               { @apply space-y-3 w-full mt-5; }
+.social > button      { @apply w-full; }
+.social > button > svg{ @apply size-5 mr-2; }
+
+.footer          { @apply p-0 mt-4 text-sm text-muted-foreground justify-center; }
+.footer > button { @apply ml-1 text-sky-600 bg-transparent; }
+

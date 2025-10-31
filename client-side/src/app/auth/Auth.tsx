@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import {Form} from '@/components/ui/form-elements/Form'
 import { Button } from '@/components/ui/Button'
 import { AuthFields } from '@/app/auth/AuthFields'
+import { Social } from '@/app/auth/Social'
 
 function Auth() {
 	const [isReg, setIsReg] = useState(false)
@@ -32,6 +33,7 @@ function Auth() {
 								<Button disabled={isPending}>To Continue</Button>
 							</form>
 						</Form>
+						<Social/>
 					</CardContent>
 					<CardFooter className={styles.footer}>
 						{isReg? 'Already have an account?' : 'Don\'t have an account?'}
