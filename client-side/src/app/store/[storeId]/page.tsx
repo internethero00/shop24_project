@@ -1,9 +1,6 @@
-import type {Metadata} from 'next'
+import type { Metadata } from 'next'
 import { NO_INDEX_PAGE } from '@/constants/seo.constants'
-import { Store } from 'lucide-react'
-
-
-
+import { Store } from '@/app/store/[storeId]/Store'
 
 export const metadata: Metadata = {
 	title: 'Store management',
