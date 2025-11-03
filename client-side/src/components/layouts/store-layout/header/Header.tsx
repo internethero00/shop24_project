@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { DASHBOARD_URL } from '@/config/url.config'
 import Image from 'next/image'
 import { Loader } from '@/components/ui/Loader'
+import { StoreSwitcher } from '@/components/layouts/store-layout/header/StoreSwitcher'
 
 export function Header() {
 	const {user, isLoading} = useProfile()
@@ -18,6 +19,7 @@ export function Header() {
 				:
 				(user&&
 					<>
+						<StoreSwitcher items={user.stores}/>
 						<Link href={DASHBOARD_URL.home()}>
 							<Image className={styles.img} src={user.picture} alt={user.name} width={42} height={42} />
 						</Link>
