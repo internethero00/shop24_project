@@ -1,7 +1,7 @@
 'use client'
 import { useParams } from 'next/navigation'
 import { IMenuItem } from '@/components/layouts/store-layout/sidebar/navigation/menu.interface'
-import { Album, BarChart, FolderKanban, PaintBucket, Settings } from 'lucide-react'
+import { Album, BarChart, FolderKanban, PaintBucket, Settings, Star } from 'lucide-react'
 import { STORE_URL } from '@/config/url.config'
 import styles from './Navigation.module.css'
 import { MenuItem } from '@/components/layouts/store-layout/sidebar/navigation/MenuItem'
@@ -31,7 +31,7 @@ export function Navigation() {
 			value: 'Colors',
 		},
 		{
-			icon: PaintBucket,
+			icon: Star,
 			link: STORE_URL.reviews(params.storeId),
 			value: 'Reviews',
 		},
