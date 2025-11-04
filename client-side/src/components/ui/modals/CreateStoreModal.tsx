@@ -56,7 +56,7 @@ export function CreateStoreModal({ children }: PropsWithChildren<unknown>) {
                   <FormControl>
                     <Input
                       placeholder="Title"
-                      type="email"
+                      type="text"
                       disabled={isLoadingCreate}
                       {...field}
                     />
