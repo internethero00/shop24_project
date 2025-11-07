@@ -1,0 +1,32 @@
+@reference "../../../../globals.css";
+
+.middle {
+    @apply grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7 mt-6;
+}
+.header {
+    @apply flex flex-col items-stretch space-y-0 border-b p-4;
+}
+.header > div {
+    @apply text-xl font-medium line-clamp-1;
+}
+.overview {
+    @apply col-span-1 lg:col-span-4 md:col-span-1;
+}
+.last_users {
+    @apply col-span-1 lg:col-span-3 md:col-span-1;
+}
+.user {
+    @apply flex items-center mt-5;
+}
+.user > img{
+    @apply rounded-full;
+}
+.user > .info{
+    @apply ml-4 space-y-1 text-sm text-foreground;
+}
+.name{
+    @apply leading-none;
+}
+.total {
+    @apply ml-auto font-medium;
+}
