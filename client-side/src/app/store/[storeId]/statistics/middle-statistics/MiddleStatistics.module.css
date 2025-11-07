@@ -25,7 +25,7 @@
     @apply ml-4 space-y-1 text-sm text-foreground;
 }
 .name{
-    @apply leading-none;
+    @apply leading-none text-black font-medium;
 }
 .total {
     @apply ml-auto font-medium;
