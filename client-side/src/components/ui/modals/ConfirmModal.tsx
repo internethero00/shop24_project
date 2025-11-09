@@ -6,7 +6,6 @@ import {
 	AlertDialogTitle,
 	AlertDialogTrigger
 } from '@/components/ui/AlertDialog'
-import { Button } from '@/components/ui/Button'
 
 interface ConfirmModalProps {
 	handleClick: () => void;
@@ -28,7 +27,7 @@ export function ConfirmModal({children, handleClick}: PropsWithChildren<ConfirmM
 			<AlertDialogFooter>
 				<AlertDialogCancel>Cancel</AlertDialogCancel>
 				<AlertDialogAction
-					className='bg-blue-900 hover:bg-blue-900/90' onClick={() => handleClick()}>
+					className='bg-blue-500 hover:bg-blue-500/90' onClick={() => handleClick()}>
 					Continue
 				</AlertDialogAction>
 			</AlertDialogFooter>
