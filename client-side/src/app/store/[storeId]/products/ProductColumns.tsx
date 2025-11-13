@@ -1,6 +1,15 @@
 import { ColumnDef } from '@tanstack/react-table'
 import { Button } from '@/components/ui/Button'
-import { ArrowUpDown } from 'lucide-react'
+import { ArrowUpDown, ExternalLink, MoreHorizontal, Pencil } from 'lucide-react'
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuTrigger
+} from '@/components/ui/DropdownMenu'
+import Link from 'next/link'
+import { PUBLIC_URL, STORE_URL } from '@/config/url.config'
 
 export interface IProductColumn {
 	id: string
@@ -60,6 +69,39 @@ export const columns: ColumnDef<IProductColumn>[] = [
 				{row.original.color}
 				<div className='size-5 rounded-full border' style={{backgroundColor: row.original.color}}></div>
 			</div>
+		)
+	},
+	{
+		accessorKey: 'actions',
+		header: 'Actions',
+		cell: ({row}) => (
+			<DropdownMenu>
+				<DropdownMenuTrigger asChild>
+					<Button variant='ghost' className='size-8 p-0'>
+						<MoreHorizontal className='size-4'/>
+					</Button>
+				</DropdownMenuTrigger>
+				<DropdownMenuContent align='end'>
+					<DropdownMenuLabel>Actions</DropdownMenuLabel>
+					<Link
+						href={PUBLIC_URL.product(row.original.id)}
+						target='_blank'
+					>
+						<DropdownMenuItem>
+							<ExternalLink className='size-4 mr-2'/>
+							Products page
+						</DropdownMenuItem>
+					</Link>
+					<Link
+						href={STORE_URL.productEdit(row.original.storeId, row.original.id)}
+					>
+						<DropdownMenuItem>
+							<Pencil className='size-4 mr-2'/>
+							To Change
+						</DropdownMenuItem>
+					</Link>
+				</DropdownMenuContent>
+			</DropdownMenu>
 		)
 	}
 
