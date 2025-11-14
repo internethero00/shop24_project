@@ -8,7 +8,7 @@ export const useGetProducts = () => {
 
 	const {data: products, isLoading} = useQuery({
 		queryKey: ['get products for store dashboard'],
-		queryFn: () => productService.getAll(params.storeId),
+		queryFn: () => productService.getByStoreId(params.storeId),
 	})
 
 	return useMemo(() => ({products, isLoading}), [products, isLoading])

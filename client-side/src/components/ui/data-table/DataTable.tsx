@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/Table";
 import { useState } from "react";
 import { Input } from "@/components/ui/form-elements/Input"
-import styles from './DataTable.module.scss'
+import styles from './DataTable.module.css'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -54,9 +54,9 @@ export function DataTable<TData, TValue>({
       {filterKey && ( <div className={styles.search}>
         <Input
             placeholder="Search"
-            value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+            value={(table.getColumn(filterKey)?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
-                table.getColumn("email")?.setFilterValue(event.target.value)
+                table.getColumn(filterKey)?.setFilterValue(event.target.value)
             }
             className="max-w-sm"
         />

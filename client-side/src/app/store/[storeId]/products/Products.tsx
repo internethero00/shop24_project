@@ -1,8 +1,16 @@
+'use client'
 import { useParams } from 'next/navigation'
 import { useGetProducts } from '@/hooks/queries/products/useGetProducts'
-import { IProductColumn } from '@/app/store/[storeId]/products/ProductColumns'
+import { IProductColumn, productColumns } from '@/app/store/[storeId]/products/ProductColumns'
 import { formatPrice } from '@/utils/string/format-price'
 import styles from '../Store.module.css'
+import { DataTableLoading } from '@/components/ui/data-table/DataTableLoading'
+import { Heading } from '@/components/ui/Heading'
+import Link from 'next/link'
+import { STORE_URL } from '@/config/url.config'
+import { Button } from '@/components/ui/Button'
+import { Plus } from 'lucide-react'
+import { DataTable } from '@/components/ui/data-table/DataTable'
 
 export function Products(){
 	const params = useParams<{storeId: string}>()
@@ -15,10 +23,36 @@ export function Products(){
 				id: product.id,
 				title: product.title,
 				price: formatPrice(product.price),
-				category: product.category,
+				category: product.category.title,
 				color: product.color.value,
-				storeId: product.store.id
+				storeId: product.storeId
 			}))
 		: []
-	return <div>Products</div>
+	return (
+    <div className={styles.wrapper}>
+      {isLoading ? (
+        <DataTableLoading />
+      ) : (
+        <>
+          <div className={styles.header}>
+            <Heading
+              title={`${products?.length} Products`}
+              description="Products of the store"
+            />
+            <div className={styles.buttons}>
+              <Link href={STORE_URL.productCreate(params.storeId)}>
+				  <Button variant='primary'>
+					  <Plus/>
+					  To Create
+				  </Button>
+			  </Link>
+            </div>
+          </div>
+			<div className={styles.table}>
+				<DataTable columns={productColumns} data={formattedProducts} filterKey='title'/>
+			</div>
+        </>
+      )}
+    </div>
+  );
 }

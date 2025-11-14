@@ -1,4 +1,4 @@
-import styles from './DataTable.module.scss'
+import styles from './DataTable.module.css'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { Card, CardContent } from '@/components/ui/Card'
 import { Loader } from '@/components/ui/Loader'
