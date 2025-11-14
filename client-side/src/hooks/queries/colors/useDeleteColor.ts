@@ -1,0 +1,33 @@
+import { useParams, useRouter } from 'next/navigation'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { IColorInput } from '@/shared/types/color.interface'
+import { colorService } from '@/services/color.service'
+import toast from 'react-hot-toast'
+import { STORE_URL } from '@/config/url.config'
+import { useMemo } from 'react'
+
+export const useDeleteColor = () => {
+	const params = useParams<{storeId: string; colorId: string}>();
+	const {push} = useRouter();
+
+	const queryClient = useQueryClient();
+
+	const {mutate: deleteColor, isPending: isLoadingDelete} = useMutation({
+		mutationKey: ['delete color'],
+		mutationFn: () => colorService.delete(params.colorId),
+		onSuccess() {
+			queryClient.invalidateQueries({
+				queryKey: ['get colors for store dashboard']
+			})
+			toast.success('Color successfully deleted')
+			push(STORE_URL.colors(params.storeId))
+		},
+		onError() {
+			toast.error('Error deleting color')
+		}
+	})
+
+	return useMemo(() => ({
+		deleteColor, isLoadingDelete
+	}), [deleteColor, isLoadingDelete])
+}
