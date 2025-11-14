@@ -19,7 +19,7 @@ export const useCreateColor = () => {
 			queryClient.invalidateQueries({
 				queryKey: ['get colors for store dashboard']
 			})
-			toast.success('Create color successfully')
+			toast.success('Created color successfully')
 			push(STORE_URL.colors(params.storeId))
 		},
 		onError() {
