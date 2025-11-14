@@ -1,0 +1,474 @@
+openapi: 3.0.0
+info:
+  title: shop24 v2.0
+  version: 1.0.0
+  description: ''
+servers:
+  - url: '{{baseURL}}'
+  - url: http://localhost:5000
+paths:
+  /auth/register:
+    post:
+      summary: register
+      tags:
+        - auth
+      responses: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+  /auth/login:
+    post:
+      summary: login
+      tags:
+        - auth
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+  /auth/login/access-token:
+    post:
+      summary: accces-token
+      tags:
+        - auth
+      responses: {}
+  /auth/logout:
+    post:
+      summary: logout
+      tags:
+        - auth
+      responses: {}
+  /users/profile:
+    get:
+      summary: getUserProfile
+      tags:
+        - user
+      responses: {}
+      security:
+        - BearerAuth: []
+  /users/profile/favorites/cmh4qu0cg0005vjhc6umtm7zy:
+    patch:
+      summary: toggleFavorite
+      tags:
+        - user
+      responses: {}
+      security:
+        - BearerAuth: []
+  /stores:
+    post:
+      summary: createStore
+      tags:
+        - store
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+  /stores/by-id/cmh4irnbu0001vjz0gekxjguf:
+    get:
+      summary: getStoreById
+      tags:
+        - store
+      responses: {}
+      security:
+        - BearerAuth: []
+  /stores/cmh0rcjtp0001vjwkd9ju6lcq:
+    put:
+      summary: updateStoreById
+      tags:
+        - store
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+    delete:
+      summary: deleteStore
+      tags:
+        - store
+      responses: {}
+      security:
+        - BearerAuth: []
+  /colors/by-storeId/cmh0wcmfg0001vjmce0anf3bb:
+    get:
+      summary: getByStoreId
+      tags:
+        - color
+      responses: {}
+      security:
+        - BearerAuth: []
+  /colors/by-id/cmh4jozlb0003vjssvdgv4qf9:
+    get:
+      summary: getById
+      tags:
+        - color
+      responses: {}
+      security:
+        - BearerAuth: []
+  /colors/cmh4irnbu0001vjz0gekxjguf:
+    post:
+      summary: createColor
+      tags:
+        - color
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                value:
+                  type: string
+                  format: color
+  /colors/cmh0wjvsy0003vjmc5c6g6imi:
+    put:
+      summary: updateColor
+      tags:
+        - color
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                value:
+                  type: string
+                  format: color
+    delete:
+      summary: deleteColor
+      tags:
+        - color
+      responses: {}
+      security:
+        - BearerAuth: []
+  /products/by-storeId/cmh4irnbu0001vjz0gekxjguf:
+    get:
+      summary: getByStoreId
+      tags:
+        - product
+      responses: {}
+      security:
+        - BearerAuth: []
+  /products/by-id/cmh4qu0cg0005vjhc6umtm7zy:
+    get:
+      summary: getById
+      tags:
+        - product
+      responses: {}
+      security:
+        - BearerAuth: []
+  /products/cmh6cdl5m0001vjy00c5s3fg1:
+    post:
+      summary: createProduct
+      tags:
+        - product
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                price:
+                  type: integer
+                images:
+                  type: array
+                  items:
+                    type: string
+                categoryId:
+                  type: string
+                colorId:
+                  type: string
+  /products/cmh4irnbu0001vjz0gekxjguf:
+    put:
+      summary: updateProduct
+      tags:
+        - product
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                value:
+                  type: string
+                  format: color
+  /products/cmh0wjvsy0003vjmc5c6g6imi:
+    delete:
+      summary: deleteProduct
+      tags:
+        - product
+      responses: {}
+      security:
+        - BearerAuth: []
+  /products/:
+    get:
+      summary: getAll
+      tags:
+        - product
+      parameters:
+        - name: searchTerm
+          in: query
+          schema:
+            type: string
+      responses: {}
+  /products/by-category/cmh4qrq7o0001vjhc93xkpvu6:
+    get:
+      summary: byCategoryId
+      tags:
+        - product
+      responses: {}
+      security:
+        - BearerAuth: []
+  /products/most-popular:
+    get:
+      summary: getMostPopular
+      tags:
+        - product
+      responses: {}
+  /products/similar/cmh4qu0cg0005vjhc6umtm7zy:
+    get:
+      summary: getSimilar
+      tags:
+        - product
+      responses: {}
+  /reviews/by-storeId/cmh4irnbu0001vjz0gekxjguf:
+    get:
+      summary: getByStoreId
+      tags:
+        - review
+      responses: {}
+      security:
+        - BearerAuth: []
+  /reviews/cmh4qu0cg0005vjhc6umtm7zy/cmh4irnbu0001vjz0gekxjguf:
+    post:
+      summary: createReview
+      tags:
+        - review
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                rating:
+                  type: integer
+  /reviews/cmh59zzsh0000vj546tov67y3:
+    delete:
+      summary: deleteProduct
+      tags:
+        - review
+      responses: {}
+      security:
+        - BearerAuth: []
+  /categories/by-storeId/cmh0wcmfg0001vjmce0anf3bb:
+    get:
+      summary: getByStoreId
+      tags:
+        - category
+      responses: {}
+      security:
+        - BearerAuth: []
+  /categories/by-id/cmh105diz0001vjtkrdjq9c7v:
+    get:
+      summary: getById
+      tags:
+        - category
+      responses: {}
+      security:
+        - BearerAuth: []
+  /categories/cmh4irnbu0001vjz0gekxjguf:
+    post:
+      summary: createCategory
+      tags:
+        - category
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+  /categories/cmh105diz0001vjtkrdjq9c7v:
+    put:
+      summary: updateCategory
+      tags:
+        - category
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+    delete:
+      summary: deleteCategory
+      tags:
+        - category
+      responses: {}
+      security:
+        - BearerAuth: []
+  /files:
+    post:
+      summary: saveFiles
+      tags:
+        - files
+      responses: {}
+      security:
+        - BearerAuth: []
+  /orders/place:
+    post:
+      summary: getMainStatistics
+      tags:
+        - order
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      quantity:
+                        type: integer
+                      price:
+                        type: integer
+                      productId:
+                        type: string
+                      storeId:
+                        type: string
+  /statistics/main/cmh4irnbu0001vjz0gekxjguf:
+    get:
+      summary: getMainStatistics
+      tags:
+        - statistics
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      quantity:
+                        type: integer
+                      price:
+                        type: integer
+                      productId:
+                        type: string
+                      storeId:
+                        type: string
+  /statistics/middle/cmh4irnbu0001vjz0gekxjguf:
+    get:
+      summary: getMiddleStatistics
+      tags:
+        - statistics
+      responses: {}
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                items:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      quantity:
+                        type: integer
+                      price:
+                        type: integer
+                      productId:
+                        type: string
+                      storeId:
+                        type: string
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

@@ -5,14 +5,13 @@ import { ConfigService } from '@nestjs/config'
 
 @Injectable()
 export class YandexStrategy extends PassportStrategy(Strategy, 'yandex') {
-
-
 	constructor(private configService: ConfigService) {
 		super({
 			clientID: configService.get('YANDEX_CLIENT_ID') ?? '',
 			clientSecret: configService.get('YANDEX_CLIENT_SECRET') ?? '',
 			callbackURL:
-				(configService.get('SERVER_URL') ?? '') + '/auth/yandex/callback',
+				(configService.get('SERVER_URL') ?? '') +
+				'/auth/yandex/callback'
 		})
 	}
 

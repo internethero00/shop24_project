@@ -1,4 +1,9 @@
-import { BadRequestException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common'
+import {
+	BadRequestException,
+	Injectable,
+	NotFoundException,
+	UnauthorizedException
+} from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { UserService } from '../user/user.service'
 import { PrismaService } from '../prisma.service'
@@ -18,8 +23,7 @@ export class AuthService {
 		private userService: UserService,
 		private prisma: PrismaService,
 		private configService: ConfigService
-	) {
-	}
+	) {}
 
 	async login(dto: AuthDto) {
 		const user = await this.validateUser(dto)
@@ -72,7 +76,7 @@ export class AuthService {
 				data: {
 					email: req.user.email,
 					name: req.user.name,
-					picture: req.user.picture,
+					picture: req.user.picture
 				},
 				include: {
 					stores: true,
@@ -84,7 +88,7 @@ export class AuthService {
 
 		const tokens = this.issueTokens(user.id)
 
-		return { user, ...tokens}
+		return { user, ...tokens }
 	}
 
 	addRefreshTokenToResponse(res: Response, refreshToken: string) {
@@ -109,6 +113,4 @@ export class AuthService {
 			sameSite: 'none'
 		})
 	}
-
-
 }

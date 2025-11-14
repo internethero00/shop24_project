@@ -1,4 +1,3 @@
-
 export type UserDB = {
 	id: string
 	createdAt: Date

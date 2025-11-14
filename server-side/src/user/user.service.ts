@@ -13,10 +13,10 @@ export class UserService {
 			include: {
 				stores: true,
 				favorites: true,
-				orders: true,
-			},
-		});
-		return user;
+				orders: true
+			}
+		})
+		return user
 	}
 
 	async getByEmail(email: string) {
@@ -25,26 +25,28 @@ export class UserService {
 			include: {
 				stores: true,
 				favorites: true,
-				orders: true,
-			},
-		});
-		return user;
+				orders: true
+			}
+		})
+		return user
 	}
 
 	async toggleFavorite(productId: string, userId: string) {
-		const user = await this.getById(userId) as typeof user;
-		const isExists = user.favorites.some(product => product.id === productId);
+		const user = (await this.getById(userId)) as typeof user
+		const isExists = user.favorites.some(
+			product => product.id === productId
+		)
 		await this.prisma.user.update({
 			where: { id: userId },
 			data: {
 				favorites: {
 					[isExists ? 'disconnect' : 'connect']: {
-						id: productId,
+						id: productId
 					}
 				}
 			}
 		})
-		return true;
+		return true
 	}
 
 	async create(dto: AuthDto) {
@@ -52,8 +54,8 @@ export class UserService {
 			data: {
 				name: dto.name,
 				email: dto.email,
-				password: await hash(dto.password),
-			},
-		});
+				password: await hash(dto.password)
+			}
+		})
 	}
 }
