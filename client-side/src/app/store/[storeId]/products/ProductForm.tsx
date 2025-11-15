@@ -16,7 +16,7 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import { Textarea } from '@/components/ui/Textarea'
 
 interface ProductFormProps {
-	product: IProduct | null;
+	product?: IProduct | null;
 	categories: ICategory[]
 	colors: IColor[]
 }
@@ -65,106 +65,110 @@ export function ProductForm({product, colors, categories}: ProductFormProps){
 		</div>
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)}>
-				<FormField
-					control={form.control}
-					name="title"
-					rules={{ required: "The title is required" }}
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Product name</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="Product name"
-									type="text"
-									disabled={isLoadingCreate || isLoadingUpdate}
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="price"
-					rules={{ required: "The price is required" }}
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Price of product</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="Price of product"
-									type="text"
-									disabled={isLoadingCreate || isLoadingUpdate}
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="categoryId"
-					rules={{ required: "The category is required" }}
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Categories</FormLabel>
-							<Select
-								disabled={isLoadingUpdate || isLoadingCreate}
-								onValueChange={field.onChange}
-								defaultValue={field.value}
-							>
+				<div className={styles.fields}>
+					<FormField
+						control={form.control}
+						name="title"
+						rules={{ required: "The title is required" }}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Product name</FormLabel>
 								<FormControl>
-									<SelectTrigger>
-										<SelectValue placeholder='Product category'/>
-									</SelectTrigger>
+									<Input
+										placeholder="Product name"
+										type="text"
+										disabled={isLoadingCreate || isLoadingUpdate}
+										{...field}
+									/>
 								</FormControl>
-								<SelectContent>
-									<SelectGroup>
-										{categories.map(category => (
-											<SelectItem value={category.id} key={category.id}>
-												{category.title}
-											</SelectItem>
-										))}
-									</SelectGroup>
-								</SelectContent>
-							</Select>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<FormField
-					control={form.control}
-					name="colorId"
-					rules={{ required: "The color is required" }}
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Colors</FormLabel>
-							<Select
-								disabled={isLoadingUpdate || isLoadingCreate}
-								onValueChange={field.onChange}
-								defaultValue={field.value}
-							>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="price"
+						rules={{ required: "The price is required" }}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Price of product</FormLabel>
 								<FormControl>
-									<SelectTrigger>
-										<SelectValue placeholder='Product color'/>
-									</SelectTrigger>
+									<Input
+										placeholder="Price of product"
+										type="text"
+										disabled={isLoadingCreate || isLoadingUpdate}
+										{...field}
+									/>
 								</FormControl>
-								<SelectContent>
-									<SelectGroup>
-										{colors.map(color => (
-											<SelectItem value={color.id} key={color.id}>
-												{color.name}
-											</SelectItem>
-										))}
-									</SelectGroup>
-								</SelectContent>
-							</Select>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+					<FormField
+						control={form.control}
+						name="categoryId"
+						rules={{ required: "The category is required" }}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Categories</FormLabel>
+								<Select
+									disabled={isLoadingUpdate || isLoadingCreate}
+									onValueChange={field.onChange}
+									defaultValue={field.value}
+								>
+									<FormControl>
+										<SelectTrigger className='w-full'>
+											<SelectValue placeholder='Product category'/>
+										</SelectTrigger>
+									</FormControl>
+									<SelectContent>
+										<SelectGroup>
+											{categories.map(category => (
+												<SelectItem value={category.id} key={category.id}>
+													{category.title}
+												</SelectItem>
+											))}
+										</SelectGroup>
+									</SelectContent>
+								</Select>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+				</div>
+				<div className={styles.fields}>
+					<FormField
+						control={form.control}
+						name="colorId"
+						rules={{ required: "The color is required" }}
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel>Colors</FormLabel>
+								<Select
+									disabled={isLoadingUpdate || isLoadingCreate}
+									onValueChange={field.onChange}
+									defaultValue={field.value}
+								>
+									<FormControl>
+										<SelectTrigger className='w-full'>
+											<SelectValue placeholder='Product color'/>
+										</SelectTrigger>
+									</FormControl>
+									<SelectContent>
+										<SelectGroup>
+											{colors.map(color => (
+												<SelectItem value={color.id} key={color.id}>
+													{color.name}
+												</SelectItem>
+											))}
+										</SelectGroup>
+									</SelectContent>
+								</Select>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+				</div>
 				<FormField control={form.control} name='description'
 						   rules={{ required: "The description is required" }}
 						   render={({field}) => (
