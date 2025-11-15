@@ -14,6 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input } from '@/components/ui/form-elements/Input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/Select'
 import { Textarea } from '@/components/ui/Textarea'
+import { ImageUpload } from '@/components/ui/form-elements/image-upload/ImageUpload'
 
 interface ProductFormProps {
 	product?: IProduct | null;
@@ -64,7 +65,23 @@ export function ProductForm({product, colors, categories}: ProductFormProps){
 			)}
 		</div>
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)}>
+			<form onSubmit={form.handleSubmit(onSubmit)} className='mt-4'>
+				<FormField
+					control={form.control}
+					name="images"
+					rules={{ required: "The image is required" }}
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Images</FormLabel>
+							<FormControl>
+								<ImageUpload isDisabled={isLoadingCreate||isLoadingUpdate}
+											 onChange={field.onChange}
+											 value={field.value}/>
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 				<div className={styles.fields}>
 					<FormField
 						control={form.control}

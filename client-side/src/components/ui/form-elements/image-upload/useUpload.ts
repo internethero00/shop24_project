@@ -3,12 +3,13 @@ import { useMutation } from '@tanstack/react-query'
 import { fileService } from '@/services/file.service'
 import toast from 'react-hot-toast'
 
-export function uploadImage(onChange: (value: string[]) => void) {
+export function useUpload(onChange: (value: string[]) => void) {
 	const fileInputRef = useRef<HTMLInputElement>(null);
 	const {mutate: uploadFiles, isPending: isUploading} = useMutation({
 		mutationKey: ['uploads files'],
 		mutationFn: (formData: FormData) => fileService.upload(formData),
 		onSuccess(data){
+			console.log(data)
 			onChange(data.map(file => file.url))
 		},
 		onError() {
