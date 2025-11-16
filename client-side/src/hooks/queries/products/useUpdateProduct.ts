@@ -6,13 +6,13 @@ import toast from 'react-hot-toast'
 import { useMemo } from 'react'
 
 export const useUpdateProduct = () => {
-	const params = useParams<{storeId: string}>();
+	const params = useParams<{productId: string}>();
 	const queryClient = useQueryClient()
 
 	const {mutate: updateProduct, isPending: isLoadingUpdate} = useMutation({
 		mutationKey: ['update product'],
 		mutationFn: (data: IProductInput) =>
-			productService.update(params.storeId, data),
+			productService.update(params.productId, data),
 		onSuccess() {
 			queryClient.invalidateQueries({
 				queryKey: ['get products for store dashboard'],
