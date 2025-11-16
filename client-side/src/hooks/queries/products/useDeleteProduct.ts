@@ -6,7 +6,7 @@ import { STORE_URL } from '@/config/url.config'
 import { useMemo } from 'react'
 
 export const useDeleteProduct = () => {
-	const params = useParams<{storeId: string}>();
+	const params = useParams<{productId: string, storeId: string}>();
 	const {push} = useRouter()
 
 	const queryClient = useQueryClient()
@@ -14,7 +14,7 @@ export const useDeleteProduct = () => {
 	const {mutate: deleteProduct, isPending: isLoadingDelete} = useMutation({
 		mutationKey: ['delete product'],
 		mutationFn: () =>
-			productService.delete(params.storeId),
+			productService.delete(params.productId),
 		onSuccess() {
 			queryClient.invalidateQueries({
 				queryKey: ['get products for store dashboard'],
