@@ -10,6 +10,7 @@ import { ICategory, ICategoryInput } from '@/shared/types/category.interface'
 import { useCreateCategory } from '@/hooks/queries/categories/useCreateCategory'
 import { useUpdateCategory } from '@/hooks/queries/categories/useUpdateCategory'
 import { useDeleteCategory } from '@/hooks/queries/categories/useDeleteCategory'
+import { Textarea } from '@/components/ui/Textarea'
 
 interface CategoryFormProps {
 	category?: ICategory
@@ -54,7 +55,6 @@ export function CategoryForm({category}: CategoryFormProps){
 		</div>
 		<Form {...form}>
 			<form onSubmit={form.handleSubmit(onSubmit)} className='mt-4'>
-				<div className={styles.fields}>
 					<FormField
 						control={form.control}
 						name="title"
@@ -77,14 +77,12 @@ export function CategoryForm({category}: CategoryFormProps){
 					<FormField
 						control={form.control}
 						name="description"
-						rules={{ required: "The description is required" }}
 						render={({ field }) => (
 							<FormItem>
 								<FormLabel>Description of category</FormLabel>
 								<FormControl>
-									<Input
+									<Textarea
 										placeholder="Description of category"
-										type="text"
 										disabled={isLoadingCreate || isLoadingUpdate}
 										{...field}
 									/>
@@ -93,7 +91,7 @@ export function CategoryForm({category}: CategoryFormProps){
 							</FormItem>
 						)}
 					/>
-				</div>
+
 				<Button variant='primary' disabled={isLoadingCreate || isLoadingUpdate }>{action}</Button>
 			</form>
 		</Form>
