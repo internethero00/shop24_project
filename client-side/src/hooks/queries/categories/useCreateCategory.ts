@@ -12,7 +12,7 @@ export const useCreateCategory = () => {
 
 	const queryClient = useQueryClient();
 
-	const {mutate: createCategory, isPending: isLoadingCategory} = useMutation({
+	const {mutate: createCategory, isPending: isLoadingCreate} = useMutation({
 		mutationKey: ['create category'],
 		mutationFn: (data: ICategoryInput) => categoryService.create(data, params.storeId),
 		onSuccess() {
@@ -28,6 +28,6 @@ export const useCreateCategory = () => {
 	})
 
 	return useMemo(() => ({
-		createCategory, isLoadingCategory
-	}), [createCategory, isLoadingCategory])
+		createCategory, isLoadingCreate
+	}), [createCategory, isLoadingCreate])
 }
