@@ -1,0 +1,5 @@
+@reference "../../../../app/globals.css";
+
+.header{
+    @apply mx-5 lg:mx-14;
+}
