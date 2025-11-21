@@ -1,4 +1,4 @@
-@reference "../../../../app/globals.css";
+@reference "../../../../../app/globals.css";
 
 .header_menu {
     @apply hidden items-center gap-x-2 ml-auto lg:flex;
