@@ -1,0 +1,13 @@
+@reference "../../../../../app/globals.css";
+.form{
+    @apply flex items-center relative;
+}
+.form > input{
+    @apply rounded-lg rounded-r-none focus-visible:ring-transparent pr-8;
+}
+.form button{
+    @apply rounded-l-none;
+}
+.form button > svg {
+    @apply size-4;
+}
