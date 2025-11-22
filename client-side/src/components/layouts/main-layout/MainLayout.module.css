@@ -1,10 +1,10 @@
 @reference "../../../app/globals.css";
 .wrapper {
-    @apply flex flex-col h-full;
+    @apply flex flex-col;
 }
 .layout {
-    @apply flex-1;
+    @apply flex flex-col min-h-[100vh];
 }
 .main {
-    @apply mx-5 lg:mx-14;
+    @apply mx-5 lg:mx-14 flex-1;
 }

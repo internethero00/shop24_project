@@ -1,0 +1,24 @@
+@reference "../../../app/globals.css";
+
+.header {
+    @apply md:flex md:items-center md:justify-between mb-4;
+}
+.info {
+    @apply max-w-2xl lg:max-w-full lg:px-0;
+}
+.info > h1 {
+    @apply text-2xl font-bold;
+}
+.info > p{
+    @apply mt-2 text-sm text-muted-foreground;
+}
+.header a{
+    @apply hidden text-sm font-medium text-blue-700 hover:text-blue-700/90 md:flex;
+}
+.catalog {
+    @apply flex items-center w-full;
+}
+.products {
+    @apply mt-2 w-full grid sm:grid-cols-2 md:grid-cols-2
+    lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-6 gap-8;
+}
