@@ -1,6 +1,6 @@
 @reference "../../../../app/globals.css";
 .wrapper {
-    @apply border-t mt-16;
+    @apply border-t mt-10;
 }
 .footer {
     @apply mx-auto py-5 text-center;

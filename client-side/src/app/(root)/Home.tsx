@@ -10,7 +10,7 @@ interface HomeProps {
 
 export function Home({ products }: HomeProps) {
 	return (
-		<div>
+		<div className='flex flex-col content-between gap-9'>
 			<Hero/>
 			<Catalog
 				title='Bestsellers'
