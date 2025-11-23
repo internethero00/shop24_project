@@ -6,7 +6,6 @@ import type { Metadata } from "next";
 export const revalidate = 60;
 
 async function getProducts(id: string) {
-  console.log("id", id);
   const products = await productService.getByCategory(id);
   const category = await categoryService.getById(id);
   return { products, category };
