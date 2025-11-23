@@ -9,8 +9,10 @@ export const metadata: Metadata = {
   title: {
       absolute: SITE_NAME,
       template: "%s | " + SITE_NAME,
+
   },
   description: SITE_DESCRIPTION,
+
 };
 
 export default function RootLayout({
