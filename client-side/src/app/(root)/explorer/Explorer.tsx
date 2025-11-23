@@ -20,7 +20,7 @@ export function Explorer({products}: ExplorerProps) {
 	})
   return (
     <div>
-		<Catalog title={searchTerm ? `Search of ${searchTerm}` : 'Products Catalog'} products={data}/>
+		<Catalog title={searchTerm ? `Search of: "${searchTerm}"` : 'Products Catalog'} products={data}/>
     </div>
   )
 }
