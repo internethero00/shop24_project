@@ -1,0 +1,14 @@
+@reference "../../globals.css";
+
+.wrapper {
+    @apply my-6;
+}
+.header {
+    @apply flex items-center justify-between mb-4;
+}
+.header > h1 {
+    @apply text-2xl font-bold;
+}
+.header svg {
+    @apply size-4 mr-2;
+}

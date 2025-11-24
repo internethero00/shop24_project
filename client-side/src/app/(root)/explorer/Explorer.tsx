@@ -19,7 +19,7 @@ export function Explorer({products}: ExplorerProps) {
 		initialData: products,
 	})
   return (
-    <div>
+    <div className='my-6'>
 		<Catalog title={searchTerm ? `Search of: "${searchTerm}"` : 'Products Catalog'} products={data}/>
     </div>
   )
