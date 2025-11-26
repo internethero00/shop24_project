@@ -1,7 +1,7 @@
 @reference "../../globals.css";
 
 .section {
-    @apply my-24 lg:py-50 min-h-[50vh] mx-auto text-center flex-col items-center max-w-4xl;
+    @apply mt-11 pb-1 lg:py-50 min-h-[45vh] mx-auto text-center flex-col items-center max-w-4xl sm:min-h-[30vh];
 }
 .heading {
     @apply text-4xl mb-4 font-bold tracking-tight md:text-5xl;
