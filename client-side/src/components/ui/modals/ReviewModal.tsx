@@ -2,7 +2,14 @@ import { PropsWithChildren, useState } from 'react'
 import { IReviewInput } from '@/shared/types/review.interface'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useCreateReview } from '@/hooks/queries/reviews/useCreateReview'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/Dialog'
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger
+} from '@/components/ui/Dialog'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form-elements/Form'
 import { Rating } from 'react-simple-star-rating'
 import { Textarea } from '@/components/ui/Textarea'
@@ -12,7 +19,7 @@ interface ReviewModalProps {
 	storeId: string;
 }
 
-const ReviewModal = ({
+export const ReviewModal = ({
 						 storeId,
 						 children
 					 }: PropsWithChildren<ReviewModalProps>) => {
@@ -32,7 +39,7 @@ const ReviewModal = ({
 
 	return (
 		<Dialog open={isOpen} onOpenChange={setIsOpen}>
-			<DialogTitle>{children}</DialogTitle>
+			<DialogTrigger asChild>{children}</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
 					<DialogTitle>Creating a review</DialogTitle>

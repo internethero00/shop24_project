@@ -1,0 +1,38 @@
+@reference "../../../../globals.css";
+
+.header {
+    @apply flex justify-between items-center mt-10;
+}
+.header h1 {
+    @apply text-2xl font-bold;
+}
+.header svg {
+    @apply size-4 mr-2;
+}
+.reviews {
+    @apply grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8 mt-2;
+}
+.review {
+    @apply border rounded-lg p-4 pt-0;
+}
+.reviews .header {
+    @apply flex justify-between;
+}
+.user {
+    @apply flex items-center gap-x-4 font-medium;
+}
+.user img {
+    @apply rounded-full;
+}
+.delete {
+    @apply text-red-500 mt-3;
+}
+.delete svg {
+    @apply size-5;
+}
+.text {
+    @apply text-sm text-muted-foreground mt-1;
+}
+.not_found {
+    @apply mt-4;
+}

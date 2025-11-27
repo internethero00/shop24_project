@@ -7,7 +7,7 @@ interface AddToCartButtonProps {
 
 export function AddToCartButton({}: AddToCartButtonProps) {
   return (
-    <Button variant='primary' size='lg' className='w-full'>
+    <Button variant='primary' size='lg' className='lg:w-full sm:w-100'>
 		Add To Cart
     </Button>
   )
