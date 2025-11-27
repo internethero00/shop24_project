@@ -9,6 +9,11 @@ import { DASHBOARD_URL } from '@/config/url.config'
 export function useAuthForm(isReg: boolean) {
 	const router = useRouter()
 	const form = useForm<IAuthForm>({
+		defaultValues: {
+			name: '',
+			email: '',
+			password: '',
+		},
 		mode: 'onChange'
 	})
 

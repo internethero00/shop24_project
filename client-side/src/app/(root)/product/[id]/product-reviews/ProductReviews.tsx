@@ -32,7 +32,7 @@ export function ProductReviews({product}: ProductReviewsProps) {
 			<div className={styles.reviews}>
 				{product.reviews.length ? (
 					product.reviews.map(review => (
-						<div className={styles.review}>
+						<div key={review.id} className={styles.review}>
 							<div className={styles.header}>
 								<div className={styles.user}>
 									<Image
