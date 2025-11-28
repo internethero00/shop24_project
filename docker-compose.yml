@@ -1,0 +1,40 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: shop24_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgresql
+      POSTGRES_DB: shop24_project
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  server:
+    build: ./server-side
+    container_name: shop24_server
+    restart: always
+    env_file:
+      - ./server-side/.env
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+
+  client:
+    build: ./client-side
+    container_name: shop24_client
+    restart: always
+    env_file:
+      - ./client-side/.env
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+
+volumes:
+  pg_data:

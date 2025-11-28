@@ -3,16 +3,16 @@ import type { Metadata } from 'next'
 import { Product } from '@/app/(root)/product/[id]/Product'
 import { notFound } from 'next/navigation'
 
-export const revalidate = 60;
+// export const revalidate = 60;
 
-export async function generateStaticParams() {
-	const products = await productService.getAll()
-
-	const paths = products.map(product => ({
-		id: product.id
-	}))
-	return paths
-}
+// export async function generateStaticParams() {
+// 	const products = await productService.getAll()
+//
+// 	const paths = products.map(product => ({
+// 		id: product.id
+// 	}))
+// 	return paths
+// }
 
 async function getProducts(id: string) {
 	try {

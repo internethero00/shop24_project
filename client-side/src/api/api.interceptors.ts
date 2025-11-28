@@ -1,11 +1,15 @@
 import axios, { CreateAxiosDefaults } from "axios";
-import { SERVER_URL } from "@/config/api.config";
 import { errorCatch, getContentType } from '@/api/api.helper'
 import { getAccessToken, removeFromStorage } from '@/services/auth/auth-token.service'
 import { authService } from '@/services/auth/auth.service'
 
+const baseURL =
+    typeof window === 'undefined'
+        ? process.env.SERVER_URL_INTERNAL
+        : process.env.NEXT_PUBLIC_SERVER_URL;
+
 const options: CreateAxiosDefaults = {
-  baseURL: SERVER_URL,
+  baseURL: baseURL,
   headers: getContentType(),
   withCredentials: true,
 };

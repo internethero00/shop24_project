@@ -5,8 +5,9 @@ import { Explorer } from '@/app/(root)/explorer/Explorer'
 export const metadata: Metadata = {
 	title: 'Catalogs',
 }
+export const dynamic = 'force-dynamic';
 
-export const revalidate = 60;
+// export const revalidate = 60;
 
 async function getProducts() {
 	return await productService.getAll();

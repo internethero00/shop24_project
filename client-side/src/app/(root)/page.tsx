@@ -7,7 +7,8 @@ export const metadata: Metadata = {
 	title: 'All shops in one place',
 }
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic';
+// export const revalidate = 60
 
 async function getProducts() {
 	return (await productService.getMostPopular()).slice(0, 6)
