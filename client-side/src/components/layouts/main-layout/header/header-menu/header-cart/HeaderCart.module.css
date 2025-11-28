@@ -40,5 +40,5 @@
     @apply text-lg font-medium;
 }
 .buttons button {
-   @apply w-full;
+   @apply w-full mb-5;
 }

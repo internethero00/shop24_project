@@ -3,6 +3,9 @@
 .header_menu {
     @apply hidden items-center gap-x-2 ml-auto lg:flex;
 }
+.mobile_menu {
+    @apply sm:flex md:flex ml-auto;
+}
 .avatar {
     @apply rounded-full;
 }

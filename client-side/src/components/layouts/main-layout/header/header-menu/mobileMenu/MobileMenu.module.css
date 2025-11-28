@@ -1,0 +1,14 @@
+@reference "../../../../../../app/globals.css";
+
+.header {
+    @apply flex items-center space-x-7 px-1 my-3 w-full;
+}
+.header img {
+    @apply rounded-full ;
+}
+.main {
+    @apply flex flex-col mr-auto;
+}
+.main button {
+    @apply block mr-auto;
+}
