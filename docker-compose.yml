@@ -36,5 +36,14 @@ services:
     depends_on:
       - server
 
+  nginx:
+    build: ./nginx
+    container_name: shop24_nginx
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - client
+
 volumes:
   pg_data:
