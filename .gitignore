@@ -16,4 +16,4 @@
 /client-side/.next
 /client-side/.env
 
-/.idea
+.idea/
