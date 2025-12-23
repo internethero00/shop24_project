@@ -43,6 +43,9 @@ jobs:
       - name: Build client
         working-directory: client-side
         run: npm run build
+        env:
+          SERVER_URL_INTERNAL: http://server:5000
+
 
       # ---------- DOCKER (validate dockerfiles) ----------
       - name: Build docker images
