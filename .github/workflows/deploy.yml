@@ -54,6 +54,36 @@ jobs:
 
 
       # ---------- DOCKER (validate dockerfiles) ----------
+      - name: Create server-side .env from secrets
+        shell: bash
+        run: |
+          mkdir -p server-side
+          cat > server-side/.env <<'EOF'
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          CLIENT_URL=${{ vars.CLIENT_URL }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
+          YANDEX_CLIENT_ID=${{ secrets.YANDEX_CLIENT_ID }}
+          YANDEX_CLIENT_SECRET=${{ secrets.YANDEX_CLIENT_SECRET }}
+          YOOKASSA_SHOP_ID=${{ secrets.YOOKASSA_SHOP_ID }}
+          YOOKASSA_SECRET_KEY=${{ secrets.YOOKASSA_SECRET_KEY }}
+          SERVER_URL=${{ vars.SERVER_URL }}
+          SERVER_DOMAIN=${{ vars.SERVER_DOMAIN }}
+          EOF
+
+      - name: Create client-side .env from secrets
+        shell: bash
+        run: |
+          mkdir -p client-side
+          cat > client-side/.env <<'EOF'
+          APP_ENV=${{ vars.APP_ENV }}
+          APP_URL=${{ vars.APP_URL }}
+          APP_DOMAIN=${{ vars.APP_DOMAIN }}
+          SERVER_URL_INTERNAL=${{ vars.SERVER_URL_INTERNAL }}
+          NEXT_PUBLIC_SERVER_URL=${{ vars.NEXT_PUBLIC_SERVER_URL }}
+          EOF
+
       - name: Build docker images
         run: docker compose build
 
