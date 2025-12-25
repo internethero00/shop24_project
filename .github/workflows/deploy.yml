@@ -44,9 +44,9 @@ jobs:
         working-directory: client-side
         run: npm rebuild lightningcss
 
-      - name: Build client
+      - name: Build client (disable turbopack)
         working-directory: client-side
-        run: npm run build
+        run: NEXT_DISABLE_TURBOPACK=1 npm run build
         env:
           SERVER_URL_INTERNAL: http://server:5000
 
