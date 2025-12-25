@@ -36,27 +36,15 @@ jobs:
         run: npm run build
 
       # ---------- CLIENT ----------
-      - name: Install client deps (with optional)
+      - name: Install deps
         working-directory: client-side
         run: npm ci --include=optional
 
-      - name: Debug npm config (scripts/optional)
+      - name: Force lightningcss linux binary
         working-directory: client-side
         run: |
-          node -v
-          npm -v
-          npm config get ignore-scripts
-          npm config get optional
-          npm config get omit
-          npm ls lightningcss lightningcss-linux-x64-gnu || true
-
-      - name: Debug npm config
-        working-directory: client-side
-        run: |
-          node -p "process.platform + ' ' + process.arch"
-          npm -v
-          npm config get omit
-          npm config get optional
+          npm i -D lightningcss-linux-x64-gnu
+          node -e "require('lightningcss'); console.log('lightningcss ok')"
 
       - name: Build client
         working-directory: client-side
