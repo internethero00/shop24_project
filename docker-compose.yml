@@ -26,7 +26,10 @@ services:
       - postgres
 
   client:
-    build: ./client-side
+    build:
+      context: ./client-side
+      args:
+        SERVER_URL_INTERNAL: http://server:5000
     container_name: shop24_client
     restart: always
     env_file:
