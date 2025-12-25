@@ -40,6 +40,16 @@ jobs:
         working-directory: client-side
         run: npm ci --include=optional
 
+      - name: Debug npm config (scripts/optional)
+        working-directory: client-side
+        run: |
+          node -v
+          npm -v
+          npm config get ignore-scripts
+          npm config get optional
+          npm config get omit
+          npm ls lightningcss lightningcss-linux-x64-gnu || true
+
       - name: Debug npm config
         working-directory: client-side
         run: |
