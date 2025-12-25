@@ -40,6 +40,14 @@ jobs:
         working-directory: client-side
         run: npm ci --include=optional
 
+      - name: Debug npm config
+        working-directory: client-side
+        run: |
+          node -p "process.platform + ' ' + process.arch"
+          npm -v
+          npm config get omit
+          npm config get optional
+
       - name: Build client
         working-directory: client-side
         run: npm run build
