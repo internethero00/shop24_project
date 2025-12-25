@@ -40,6 +40,10 @@ jobs:
         working-directory: client-side
         run: npm ci
 
+      - name: Rebuild native deps (client)
+        working-directory: client-side
+        run: npm rebuild lightningcss
+
       - name: Build client
         working-directory: client-side
         run: npm run build
