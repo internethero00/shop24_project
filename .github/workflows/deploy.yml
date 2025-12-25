@@ -94,7 +94,7 @@ jobs:
         run: sleep 10
 
       - name: Check server port
-        run: curl -f http://localhost:5000 || (docker compose logs && exit 1)
+        run: curl -f http://localhost:5000/docs || (docker compose logs && exit 1)
 
       - name: Stop stack
         if: always()
