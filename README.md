@@ -30,6 +30,24 @@ Shop24 is a full-stack marketplace platform built as a personal project to maste
 **Status:** MVP Completed
 
 ---
+<h2 align="center">📸 Screenshots</h2>
+
+### 🏠 Home Page
+<p align="center">
+  <img src="./screenshots/home-page.jpg" alt="Shop24 home page" width="900" />
+</p>
+
+### 🔐 Sign In
+<p align="center">
+  <img src="./screenshots/sign-in.jpg" alt="Shop24 sign in page" width="900" />
+</p>
+
+### 📊 Seller Dashboard
+<p align="center">
+  <img src="./screenshots/dashboard.jpg" alt="Shop24 seller dashboard" width="900" />
+</p>
+
+---
 
 <h2 align="center">✨ Features</h2>
 
