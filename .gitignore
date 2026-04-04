@@ -11,6 +11,7 @@
 /server-side/.env
 /server-side/generated/prisma
 /server-side/dist
+/server-side/coverage
 
 /client-side/node_modules
 /client-side/.next
